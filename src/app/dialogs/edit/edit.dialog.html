@@ -1,0 +1,52 @@
+<div class="container">
+  <h3 mat-dialog-title>Tarjeta id: {{data.id}}</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+    <!--Contains mat-hint for characters count and has maxLengt set-->
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputnombre class="form-control" placeholder="Nombre" [(ngModel)]="data.name" name="nombre"
+          maxlength="10" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputnombre.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <mat-label>Area</mat-label>
+        <mat-select name="area" [(ngModel)]="data.area">
+          <mat-option *ngFor="let area of areas" [value]="area.value">
+            {{area.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <mat-label>Canal</mat-label>
+        <mat-select name="canal" [(ngModel)]="data.channel">
+          <mat-option *ngFor="let canal of canales" [value]="canal.value">
+            {{canal.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!--Textarea for demo purposes-->
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea matInput #input class="form-control" placeholder="Cuerpo" [(ngModel)]="data.body" name="cuerpo"
+          required></textarea>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Actualizar</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </div>
+  </form>
+</div>

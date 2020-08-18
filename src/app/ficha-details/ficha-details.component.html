@@ -1,0 +1,16 @@
+<div *ngIf="ficha">
+  <div>
+    <label>Name: </label> {{ficha.nombre}}
+  </div>
+  <div>
+    <label>Age: </label> {{ficha.cuerpo}}
+  </div>
+  <div>
+    <label>Area: </label> {{ficha.area}}
+  </div>
+
+ 
+  <span class="button is-small btn-danger" (click)='deleteFicha()'>Delete</span>
+ 
+  <hr/>
+</div>
